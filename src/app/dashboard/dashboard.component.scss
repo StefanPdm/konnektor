@@ -1,0 +1,46 @@
+.dashboard-container {
+  padding: 30px 20px !important;
+}
+
+/* Card Box */
+.card-box {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1%;
+}
+
+.card-box .card {
+  position: relative;
+  background: var(--white);
+  padding: 30px 15px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.card-box .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 1.5em;
+  color: var(--secunet-red);
+}
+
+.card-box .card .card-name {
+  color: var(--black);
+}
+
+.card-box .card .icon-box {
+  font-size: 2em;
+  color: var(--gray);
+  padding-right: 10px;
+}
+
+.card-box .card:hover {
+  background: var(--secunet-lightgray);
+}
