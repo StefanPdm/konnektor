@@ -36,7 +36,15 @@
 
 body {
   min-height: 100dvh !important;
+  width: 100vw !important;
+
+  overflow: unset !important;
   overflow-x: hidden !important;
+  overflow-y: auto !important;
+  position: static !important;
+  max-height: none !important;
+  height: fit-content;
+  transform: none !important;
 }
 
 .master-container {
@@ -103,6 +111,12 @@ svg text {
 /* ************************************** */
 
 @media (max-width: 1200px) {
+  .dashboard-content {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 991px) {
   .navigation {
     left: -200px;
   }
@@ -139,12 +153,23 @@ svg text {
     height: 250px;
   } */
 
+  .card-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
   .details {
     grid-template-columns: 1fr;
   }
 
-  .recent-orders table {
-    font-size: 1em;
+  .recent-logins .table .tr .td {
+    font-size: 1.2em;
+
+    &:last-child {
+      width: unset !important;
+    }
+
+    .name {
+      font-size: 1.2em !important;
+    }
   }
 }
 
@@ -182,12 +207,20 @@ svg text {
     grid-area: 3 / 1 / span 1 / span 1;
   }
 
-  .recent-orders table {
-    font-size: 0.7em;
+  .card-box {
+    grid-template-columns: 1fr !important;
   }
 
-  .recent-orders table td:first-child {
-    width: 72px;
+  .recent-logins .table .tr .td {
+    font-size: 1em;
+
+    .name {
+      font-size: 1em !important;
+    }
+  }
+
+  .kch-name {
+    font-size: 0.8em;
   }
 
   .user {

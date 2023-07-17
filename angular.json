@@ -39,9 +39,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-              
-
 
               {
                 "input": "node_modules/@ionic/angular/css/core.css"

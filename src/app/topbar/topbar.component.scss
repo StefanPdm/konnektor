@@ -1,6 +1,6 @@
 /* Topbar */
 .topbar {
-  width: 100%;
+  width: calc(100% - 200px);
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,8 @@
   padding: 0 10px !important;
   background: var(--secunet-lightgray);
   border-radius: 0 0 25px 0;
-  position: relative;
+  position: fixed;
+  z-index: 1;
 }
 
 .topbar::before {
@@ -75,7 +76,7 @@
 
 .search label ion-icon {
   position: absolute;
-  top: 7px;
+  top: -3px;
   left: 10px;
   font-size: 1.5em;
 }

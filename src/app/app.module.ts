@@ -17,11 +17,18 @@ import { MessagesComponent } from './messages/messages.component';
 import { HelpMeComponent } from './help-me/help-me.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SignInOutComponent } from './sign-in-out/sign-in-out.component';
+import { WhateverComponent } from './whatever/whatever.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'users', component: UserComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'message', component: MessagesComponent },
+  { path: 'help', component: HelpMeComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'whatever', component: WhateverComponent },
+  { path: 'logging', component: SignInOutComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
@@ -38,6 +45,7 @@ const appRoutes: Routes = [
     HelpMeComponent,
     SettingsComponent,
     SignInOutComponent,
+    WhateverComponent,
   ],
   imports: [
     BrowserModule,
