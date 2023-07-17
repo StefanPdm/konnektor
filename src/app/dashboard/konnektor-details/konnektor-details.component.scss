@@ -1,0 +1,83 @@
+.konnektor-box {
+  border-radius: 15px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  padding: 20px !important;
+
+  .konnektor-box-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+
+    .kch-name {
+      font-weight: 700;
+    }
+
+    .kch-buttons {
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+}
+
+.card-box {
+  position: relative;
+  width: 100%;
+  padding: 10px 0px !important;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1%;
+
+  .konnektor-card {
+    position: relative;
+    background: var(--white);
+    padding: 15px 10px !important;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    height: 60px;
+    border-radius: 15px;
+    min-width: 165px;
+
+    .icon-box {
+      display: flex;
+      align-items: center;
+    }
+
+    ion-icon {
+      padding-right: 10px !important;
+    }
+
+    .card-text-default {
+      // position: relative;
+      font-weight: 600;
+      font-size: 0.8em;
+      color: var(--secunet-dark-gray);
+      // padding-left: 10px !important;
+    }
+    .card-text-danger {
+      position: absolute !important;
+      font-weight: 600;
+      font-size: 0.8em;
+      color: var(--secunet-red);
+    }
+  }
+}
+
+.card-box .card .card-name {
+  color: var(--black);
+}
+
+.card-box .card .icon-box {
+  font-size: 2em;
+  color: var(--gray);
+  padding-right: 10px;
+}
+
+.card-box .card:hover {
+  background: var(--secunet-lightgray);
+}

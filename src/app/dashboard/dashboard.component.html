@@ -1,7 +1,21 @@
 <div class="dashboard-container">
-  <div class="headline">
-    Dashboard
+  <div class="headline-wrapper">
+    <svg>
+      <text x="10px" y="10px" dy=".35em" text-anchor="left">
+        Dashboard
+      </text>
+    </svg>
   </div>
 
-  <app-konnektor-details></app-konnektor-details>
+  <!-- <div class="headline">
+    Dashboard
+  </div> -->
+  <div class="dashboard-content">
+    <div>
+      <app-konnektor-details></app-konnektor-details>
+      <app-konnektor-details></app-konnektor-details>
+    </div>
+    <app-recent-logins></app-recent-logins>
+  </div>
+
 </div>

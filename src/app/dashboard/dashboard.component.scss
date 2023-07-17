@@ -1,5 +1,11 @@
 .dashboard-container {
   padding: 30px 20px !important;
+
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+    gap: 20px;
+  }
 }
 
 /* Card Box */

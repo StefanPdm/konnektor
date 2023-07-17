@@ -11,9 +11,18 @@ import { MainComponent } from './main/main.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KonnektorDetailsComponent } from './dashboard/konnektor-details/konnektor-details.component';
-import { RecentLoginsComponent } from './recent-logins/recent-logins.component';
+import { RecentLoginsComponent } from './dashboard/recent-logins/recent-logins.component';
+import { UserComponent } from './user/userer.component';
+import { MessagesComponent } from './messages/messages.component';
+import { HelpMeComponent } from './help-me/help-me.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SignInOutComponent } from './sign-in-out/sign-in-out.component';
 
-const appRoutes: Routes = [{ path: '', component: DashboardComponent }];
+const appRoutes: Routes = [
+  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'users', component: UserComponent },
+];
 
 @NgModule({
   declarations: [
@@ -24,6 +33,11 @@ const appRoutes: Routes = [{ path: '', component: DashboardComponent }];
     DashboardComponent,
     KonnektorDetailsComponent,
     RecentLoginsComponent,
+    UserComponent,
+    MessagesComponent,
+    HelpMeComponent,
+    SettingsComponent,
+    SignInOutComponent,
   ],
   imports: [
     BrowserModule,

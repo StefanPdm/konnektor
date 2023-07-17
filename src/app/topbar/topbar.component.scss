@@ -50,7 +50,7 @@
 .search {
   position: relative;
   width: 400px;
-  margin: 0 10px;
+  margin: 0 10px !important;
 }
 
 .search label {
@@ -75,13 +75,26 @@
 
 .search label ion-icon {
   position: absolute;
-  top: 0px;
+  top: 7px;
   left: 10px;
   font-size: 1.5em;
 }
 
+.user-wrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  span:first-child {
+    color: var(--secunet-darkgray);
+    font-size: 0.6em;
+  }
+}
+
 .user {
   position: relative;
+  display: flex;
+  gap: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -91,10 +104,10 @@
   border: 1.4px solid var(--secunet-red);
   margin-right: 15px;
   box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.2);
-}
 
-.user:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .user img {

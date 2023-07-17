@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KonnektorService } from '../konnektor.service';
 
 @Component({
   selector: 'app-topbar',
@@ -13,9 +14,11 @@ export class TopbarComponent implements OnInit {
   logo_small: any;
   logo_large: any;
 
+  constructor(private konnektorService: KonnektorService) {}
+
   ngOnInit() {
     this.navToggle = document.querySelector('.nav-toggle');
-    this.main = document.querySelector('.main');
+    this.main = this.konnektorService.getMain();
     this.logo_small = document.querySelector('.logo-small');
     this.logo_large = document.querySelector('.logo-large');
     this.nav = document.querySelector('.navigation');
@@ -27,7 +30,7 @@ export class TopbarComponent implements OnInit {
         : setTimeout(() => {
             this.logo_small.classList.toggle('opacity-1');
           }, 500);
-      this.main.classList.toggle('main-large');
+      this.konnektorService.setMain();
       this.navToggle?.classList.toggle('nav-toggle-turn');
       console.log(window.innerWidth);
       console.log(screen.width);

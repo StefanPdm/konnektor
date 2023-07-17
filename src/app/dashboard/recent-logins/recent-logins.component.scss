@@ -1,0 +1,68 @@
+.recent-logins {
+  position: relative;
+  display: grid;
+  grid-template-rows: 60px;
+  min-height: 500px;
+  padding: 20px !important;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
+}
+
+.recent-logins .img-box {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--secunet-red);
+  box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.recent-logins .img-box img {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: auto;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.recent-logins table tr {
+  font-size: 10px !important;
+  font-weight: 400;
+
+  h4 {
+    font-size: 10px !important;
+    font-weight: 700;
+  }
+}
+
+.recent-logins table tr:hover {
+  background-color: var(--secunet-red);
+  color: var(--white);
+}
+
+.recent-logins table tr:hover td:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+.recent-logins table tr:hover td:last-child {
+  border-radius: 0 15px 15px 0;
+}
+
+.recent-logins table {
+  td {
+    padding: 4px 4px !important;
+
+    span {
+      white-space: break-spaces;
+    }
+  }
+  tr td:last-child {
+    width: 60px;
+  }
+}
