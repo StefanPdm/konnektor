@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
-  font-family: "Montserrat", "Helvetica", "Arial", sans-serif !important;
+  font-family: "Montserrat" !important;
 }
 
 :root {
-  --secunet-red: #d70f37;
+  --secunet-red: rgb(215, 15, 55);
   --black: #000000;
   --gray: #848484;
   --secunet-lightgray: #eeeeee;
@@ -111,8 +113,27 @@ svg text {
 /* ************************************** */
 
 @media (max-width: 1200px) {
+  .topbar {
+    width: calc(100% - 0px) !important;
+  }
   .dashboard-content {
     grid-template-columns: 1fr !important;
+    grid-auto-rows: auto;
+  }
+
+  .recent-logins {
+    .name-wrapper {
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+
+      .name {
+        padding: 0 20px !important;
+      }
+      .job-title {
+        max-width: unset !important;
+      }
+    }
   }
 }
 
@@ -161,14 +182,8 @@ svg text {
   }
 
   .recent-logins .table .tr .td {
-    font-size: 1.2em;
-
     &:last-child {
       width: unset !important;
-    }
-
-    .name {
-      font-size: 1.2em !important;
     }
   }
 }
@@ -194,7 +209,12 @@ svg text {
   }
 
   .search {
-    width: 130px;
+    width: 200px !important;
+
+    input {
+      height: 30px !important;
+      font-size: 0.8em;
+    }
   }
 }
 
@@ -223,9 +243,15 @@ svg text {
     font-size: 0.8em;
   }
 
-  .user {
-    width: 30px;
-    height: 30px;
+  .user-wrapper {
+    span:first-child {
+      display: none;
+    }
+
+    .user {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   .navigation.nav-size {
