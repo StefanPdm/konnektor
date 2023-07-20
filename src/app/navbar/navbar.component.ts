@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KonnektorService } from '../konnektor.service';
+import { KonnektorService } from '../services/konnektor.service';
 
 @Component({
   selector: 'app-navbar',

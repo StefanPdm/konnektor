@@ -8,8 +8,8 @@
   </div>
   <div class="dashboard-content">
     <div>
-      <app-konnektor-details></app-konnektor-details>
-      <app-konnektor-details></app-konnektor-details>
+      <app-konnektor-details *ngFor="let konnektor of konnektors, let i=index"
+        [konnektor]="konnektor"></app-konnektor-details>
     </div>
     <app-recent-logins></app-recent-logins>
   </div>

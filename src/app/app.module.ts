@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IonicModule } from '@ionic/angular';
-import { KonnektorService } from './konnektor.service';
+import { KonnektorService } from './services/konnektor.service';
 import { TopbarComponent } from './topbar/topbar.component';
 import { MainComponent } from './main/main.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,6 +18,7 @@ import { HelpMeComponent } from './help-me/help-me.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SignInOutComponent } from './sign-in-out/sign-in-out.component';
 import { WhateverComponent } from './whatever/whatever.component';
+import { DataService } from './services/data.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
     IonicModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [KonnektorService],
+  providers: [KonnektorService, DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

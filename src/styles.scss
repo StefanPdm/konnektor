@@ -8,7 +8,7 @@
 }
 
 :root {
-  --secunet-red: rgb(215, 15, 55);
+  --secunet-red: #d70f37;
   --black: #000000;
   --gray: #848484;
   --secunet-lightgray: #eeeeee;
@@ -114,7 +114,7 @@ svg text {
 
 @media (max-width: 1200px) {
   .topbar {
-    width: calc(100% - 0px) !important;
+    // width: calc(100% - 0px) !important;
   }
   .dashboard-content {
     grid-template-columns: 1fr !important;
@@ -138,6 +138,9 @@ svg text {
 }
 
 @media (max-width: 991px) {
+  .topbar {
+    width: calc(100% - 0px) !important;
+  }
   .navigation {
     left: -200px;
   }

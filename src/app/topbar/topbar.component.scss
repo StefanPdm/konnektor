@@ -10,6 +10,11 @@
   border-radius: 0 0 25px 0;
   position: fixed;
   z-index: 1;
+  transition: 0.3s ease-in-out;
+}
+
+.toggle-size {
+  width: calc(100% - 80px);
 }
 
 .topbar::before {
@@ -61,7 +66,7 @@
 
 .search label input {
   width: 100%;
-  height: 40px;
+  height: 35px;
   border-radius: 40px;
   padding: 5px 20px 5px 35px !important;
   outline: none;

@@ -1,11 +1,12 @@
 .recent-logins {
   position: relative;
   display: grid;
-  // grid-template-rows: 60px;
+  grid-auto-rows: min-content;
   min-height: 500px;
   padding: 20px !important;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 15px;
+  background-color: var(--secunet-lightgray);
 
   .card-header h2 {
     font-size: 20px;
@@ -39,6 +40,21 @@
   border-radius: 50%;
 }
 
+.name-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+
+  .job-title {
+    display: flex;
+    overflow-wrap: break-word;
+    white-space: break-spaces;
+    width: fit-content;
+    max-width: 70px;
+  }
+}
+
 .recent-logins .table .tr {
   display: flex;
   align-items: center;
@@ -49,6 +65,8 @@
   border-radius: 15px;
   margin-bottom: 10px !important;
   padding: 10px !important;
+  height: fit-content;
+  background-color: var(--white);
 
   .name {
     font-size: 10px;
@@ -73,9 +91,6 @@
   .td {
     display: flex;
     align-items: center;
-    span {
-      white-space: break-spaces;
-    }
   }
   .tr .td:last-child {
     display: block;
