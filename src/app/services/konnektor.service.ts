@@ -193,7 +193,6 @@ export class KonnektorService {
           legend: {
             display: false,
             labels: {
-              // This more specific font property overrides the global property
               font: {
                 size: 10,
               },
@@ -204,31 +203,23 @@ export class KonnektorService {
           },
         },
       },
-
-      //
-      //
-      // responsive: true,
-
-      // aspectRatio: 1.2,
-      // cutout: '80%',
-
-      // plugins: [this.gaugeChartText],
     });
     this.chart24.update();
   }
 
-  drawRam7Chart() {
-    if (this.chart7) {
-      this.chart7.destroy();
-    }
+  drawRam7Chart(konnektor: any) {
+    // if (this.chart7) {
+    //   this.chart7.destroy();
+    // }
+    let canvas = 'chart7_' + konnektor.id;
 
-    this.chart7 = new Chart('chart7', {
+    this.chart7 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: ['', '', '', '', '', '', ''],
+        labels: konnektor.lables_7d,
         datasets: [
           {
-            data: [10, 33, 85, 46, 99, 89, 75],
+            data: konnektor.ram_usage_7d,
             label: '',
             borderColor: '#d70f37',
             backgroundColor: 'rgba(215,15, 55, 0.1)',
@@ -270,52 +261,18 @@ export class KonnektorService {
     this.chart7.update();
   }
 
-  drawRam30Chart() {
-    if (this.chart30) {
-      this.chart30.destroy();
-    }
-
-    this.chart30 = new Chart('chart30', {
+  drawRam30Chart(konnektor: any) {
+    // if (this.chart30) {
+    //   this.chart30.destroy();
+    // }
+    let canvas = 'chart30_' + konnektor.id;
+    this.chart30 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: [
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-        ],
+        labels: konnektor.labels_30d,
         datasets: [
           {
-            data: [
-              88, 33, 85, 78, 99, 89, 75, 33, 85, 76, 99, 46, 75, 33, 85, 46,
-              99, 93, 56, 75, 33, 85, 46, 99, 56, 75, 33, 85, 46, 0,
-            ],
+            data: konnektor.ram_usage_30d,
             label: '',
             borderColor: '#d70f37',
             backgroundColor: 'rgba(215,15, 55, 0.1)',
@@ -357,17 +314,17 @@ export class KonnektorService {
     this.chart30.update();
   }
 
-  drawCpuChart(score: number, gradient: any) {
-    if (this.chartCPU) {
-      this.chartCPU.destroy();
-    }
-
-    this.chartCPU = new Chart('chartCPU', {
+  drawCpuChart(gradient: any, konnektor: any) {
+    let canvas = 'chartCPU_' + konnektor.id;
+    this.chartCPU = new Chart(canvas, {
       type: 'doughnut',
       data: {
         datasets: [
           {
-            data: [score, 100 - score],
+            data: [
+              konnektor.cpu_usage_percent,
+              100 - konnektor.cpu_usage_percent,
+            ],
             borderWidth: 1,
             backgroundColor: [gradient, 'rgba(0, 0, 0, 0.2)'],
             circumference: 180,
@@ -396,46 +353,18 @@ export class KonnektorService {
     this.chartCPU.update();
   }
 
-  drawCpu24Chart() {
-    if (this.chartCpu24) {
-      this.chartCpu24.destroy();
-    }
-
-    this.chartCpu24 = new Chart('chartCpu24', {
+  drawCpu24Chart(konnektor: any) {
+    // if (this.chartCpu24) {
+    //   this.chartCpu24.destroy();
+    // }
+    let canvas = 'chartCpu24_' + konnektor.id;
+    this.chartCpu24 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: [
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-        ],
+        labels: konnektor.labels_24h,
         datasets: [
           {
-            data: [
-              10, 33, 85, 46, 99, 89, 76, 99, 46, 75, 43, 85, 46, 99, 93, 46,
-              75, 33, 85, 46, 99, 75, 33, 85, 75, 33, 85,
-            ],
+            data: konnektor.cpu_usage_24h,
             label: '',
             borderColor: '#d70f37',
             backgroundColor: 'rgba(215,15, 55, 0.1)',
@@ -477,18 +406,15 @@ export class KonnektorService {
     this.chartCpu24.update();
   }
 
-  drawCpu7Chart() {
-    if (this.chartCpu7) {
-      this.chartCpu7.destroy();
-    }
-
-    this.chartCpu7 = new Chart('chartCpu7', {
+  drawCpu7Chart(konnektor: any) {
+    let canvas = 'chartCpu7_' + konnektor.id;
+    this.chartCpu7 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: ['', '', '', '', '', '', ''],
+        labels: konnektor.lables_7d,
         datasets: [
           {
-            data: [75, 33, 85, 46, 99, 89, 95],
+            data: konnektor.cpu_usage_7d,
             label: '',
             borderColor: '#d70f37',
             backgroundColor: 'rgba(215,15, 55, 0.1)',
@@ -530,52 +456,15 @@ export class KonnektorService {
     this.chartCpu7.update();
   }
 
-  drawCpu30Chart() {
-    if (this.chartCpu30) {
-      this.chartCpu30.destroy();
-    }
-
-    this.chartCpu30 = new Chart('chartCpu30', {
+  drawCpu30Chart(konnektor: any) {
+    let canvas = 'chartCpu30_' + konnektor.id;
+    this.chartCpu30 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: [
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-        ],
+        labels: konnektor.labels_30d,
         datasets: [
           {
-            data: [
-              88, 33, 85, 78, 99, 89, 75, 33, 85, 76, 99, 46, 75, 33, 85, 46,
-              99, 93, 56, 75, 33, 85, 46, 99, 56, 75, 33, 85, 46, 0,
-            ],
+            data: konnektor.cpu_usage_30d,
             label: '',
             borderColor: '#d70f37',
             backgroundColor: 'rgba(215,15, 55, 0.1)',

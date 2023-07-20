@@ -14,7 +14,7 @@
   --secunet-lightgray: #eeeeee;
   --secunet-darkgray: #1d1e22;
   --white: #ffffff;
-  --green: #15dd3d;
+  --green: rgb(21, 221, 61);
   --orange: orange;
   --blue: rgb(21, 66, 172);
   --yellow: #bfbf3d;
@@ -113,9 +113,6 @@ svg text {
 /* ************************************** */
 
 @media (max-width: 1200px) {
-  .topbar {
-    // width: calc(100% - 0px) !important;
-  }
   .dashboard-content {
     grid-template-columns: 1fr !important;
     grid-auto-rows: auto;

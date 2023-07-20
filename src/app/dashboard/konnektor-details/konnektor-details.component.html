@@ -3,12 +3,16 @@
     <div class="kch-name">{{konnektor.id}} <span>. Konnektor </span> <span>{{konnektor.name}}</span>
     </div>
     <div class="kch-buttons">
+      <span class="status" style="color: var(--green)" *ngIf="konnektor.is_active">online</span>
+      <span class="status" style="color: var(--secunet-red)"
+        *ngIf="!konnektor.is_active">offline</span>
       <ion-icon name="play-circle-outline"
-        [ngStyle]="{'color': (konnektor.is_active) ? 'var(--gray)' : 'var(--green)'}"
-        [ngClass]="{'cursor-pointer': (!konnektor.is_active)}"></ion-icon>
+        [ngStyle]="{'color': konnektor.is_active ? 'var(--gray)' : 'var(--green)'}"
+        [ngClass]="{'cursor-pointer': (!konnektor.is_active) }"
+        (click)="onChangeStatus()"></ion-icon>
       <ion-icon name="stop-circle-outline"
-        [ngStyle]="{'color': (konnektor.is_active) ? 'var(--secunet-red)' : 'var(--gray)'}"
-        [ngClass]="{'cursor-pointer': (konnektor.is_active)}"></ion-icon>
+        [ngStyle]="{'color': konnektor.is_active ? 'var(--secunet-red)' : 'var(--gray)'}"
+        [ngClass]="{'cursor-pointer': (konnektor.is_active)}" (click)="onChangeStatus()"></ion-icon>
     </div>
   </div>
   <!-- First row -->
@@ -86,7 +90,7 @@
           Last 7 days
         </div>
         <div class="diagramm-container">
-          <canvas id="chart7" #chart27 width="100%" height="100%"></canvas>
+          <canvas id="chart7_{{konnektor.id}}" #chart7 width="100%" height="100%"></canvas>
         </div>
       </div>
     </div>
@@ -96,7 +100,7 @@
           Last 30 days
         </div>
         <div class="diagramm-container">
-          <canvas id="chart30" #chart30 width="100%" height="100%"></canvas>
+          <canvas id="chart30_{{konnektor.id}}" #chart30 width="100%" height="100%"></canvas>
         </div>
       </div>
     </div>
@@ -110,7 +114,7 @@
           CPU Usage
         </div>
         <div class="diagramm-container">
-          <canvas id="chartCPU" #chartCPU></canvas>
+          <canvas id="chartCPU_{{konnektor.id}}" #dynamicCpuCanvas></canvas>
         </div>
       </div>
     </div>
@@ -120,7 +124,7 @@
           Last 24 hours
         </div>
         <div class="diagramm-container">
-          <canvas id="chartCpu24" #chartCpu24 width="100%" height="100%"></canvas>
+          <canvas id="chartCpu24_{{konnektor.id}}" #chartCpu24 width="100%" height="100%"></canvas>
         </div>
       </div>
     </div>
@@ -130,7 +134,7 @@
           Last 7 days
         </div>
         <div class="diagramm-container">
-          <canvas id="chartCpu7" #chartCpu7 width="100%" height="100%"></canvas>
+          <canvas id="chartCpu7_{{konnektor.id}}" #chartCpu7 width="100%" height="100%"></canvas>
         </div>
       </div>
     </div>
@@ -140,7 +144,7 @@
           Last 30 days
         </div>
         <div class="diagramm-container">
-          <canvas id="chartCpu30" #chartCpu30 width="100%" height="100%"></canvas>
+          <canvas id="chartCpu30_{{konnektor.id}}" #chartCpu30 width="100%" height="100%"></canvas>
         </div>
       </div>
     </div>

@@ -1,15 +1,20 @@
 .konnektor-box {
   border-radius: 15px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
   padding: 20px !important;
   margin-bottom: 20px !important;
   background-color: var(--secunet-lightgray);
+  border: 1px solid var(--gray);
 
   .konnektor-box-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px !important;
+
+    .status {
+      font-size: 0.6em;
+    }
 
     .kch-name {
       font-weight: 700;
@@ -37,7 +42,9 @@
     position: relative;
     background: var(--white);
     padding: 15px 10px !important;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2),
+      inset 4px 4px 13px -3px rgba(0, 0, 0, 0.2);
+
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -46,9 +53,10 @@
     border-radius: 15px;
     min-width: 165px;
 
-    &:first-child {
-      font-size: 1.1;
+    ion-icon {
+      font-size: 1.2em;
     }
+
     .ribbon-box {
       // width: 200px;
       // height: 300px;
@@ -153,7 +161,8 @@
   position: relative;
   background: var(--white);
   padding: 15px 10px !important;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2),
+    inset 4px 4px 13px -3px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

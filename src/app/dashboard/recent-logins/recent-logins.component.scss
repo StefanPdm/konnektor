@@ -4,9 +4,10 @@
   grid-auto-rows: min-content;
   min-height: 500px;
   padding: 20px !important;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   background-color: var(--secunet-lightgray);
+  border: 1px solid var(--gray);
 
   .card-header h2 {
     font-size: 20px;
@@ -25,7 +26,7 @@
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--secunet-red);
-  box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.3);
   margin-right: 6px !important;
 }
 
@@ -61,7 +62,8 @@
   justify-content: space-between;
   font-size: 10px !important;
   font-weight: 400;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2),
+    inset 4px 4px 13px -3px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   margin-bottom: 10px !important;
   padding: 10px !important;

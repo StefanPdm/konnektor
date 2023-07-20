@@ -8,14 +8,14 @@ export class DataService {
     {
       id: 1,
       name: 'AXP37G-4',
-      ram_usage_percent: 79,
-      cpu_usage_percent: 96,
+      ram_usage_percent: this.getRandomIntValue(10, 79),
+      cpu_usage_percent: this.getRandomIntValue(1, 100),
       is_active: true,
       online_since: '2020-01-01',
       firmware_version: 'v1.0.56',
       update_available: true,
-      pending_transactions: 42,
-      alltime_uploads: 24.85,
+      pending_transactions: this.getRandomIntValue(10, 1000),
+      alltime_uploads: this.getRandomFloatValue(10, 100, 2),
       labels_24h: [
         '',
         '',
@@ -75,27 +75,24 @@ export class DataService {
         '',
         '',
       ],
-      ram_usage_24h: [
-        42, 33, 85, 46, 99, 89, 76, 99, 46, 75, 43, 85, 46, 99, 93, 46, 75, 33,
-        85, 46, 99, 75, 33, 85, 75, 33, 85,
-      ],
-      ram_usage_7d: [42, 75, 85, 46, 99, 89, 95],
-      ram_usage_30d: [
-        42, 88, 85, 78, 99, 89, 75, 33, 85, 76, 99, 46, 75, 33, 85, 46, 99, 93,
-        56, 75, 33, 85, 46, 99, 56, 75, 33, 85, 46, 0,
-      ],
+      ram_usage_24h: this.getRandomKonnektorValueArray(24, 10, 100),
+      ram_usage_7d: this.getRandomKonnektorValueArray(7, 10, 100),
+      ram_usage_30d: this.getRandomKonnektorValueArray(30, 10, 100),
+      cpu_usage_24h: this.getRandomKonnektorValueArray(24, 1, 100),
+      cpu_usage_7d: this.getRandomKonnektorValueArray(7, 1, 100),
+      cpu_usage_30d: this.getRandomKonnektorValueArray(30, 1, 100),
     },
     {
       id: 2,
       name: 'BXP37G-5',
-      ram_usage_percent: 29,
-      cpu_usage_percent: 10,
+      ram_usage_percent: this.getRandomIntValue(10, 79),
+      cpu_usage_percent: this.getRandomIntValue(1, 100),
       is_active: false,
       online_since: '2023-07-27',
       firmware_version: 'v2.0.1',
       update_available: false,
-      pending_transactions: 12,
-      alltime_uploads: 34.85,
+      pending_transactions: this.getRandomIntValue(10, 1000),
+      alltime_uploads: this.getRandomFloatValue(10, 100, 2),
       labels_24h: [
         '',
         '',
@@ -155,20 +152,34 @@ export class DataService {
         '',
         '',
       ],
-      ram_usage_24h: [
-        92, 100, 85, 46, 99, 89, 76, 99, 46, 75, 43, 85, 46, 99, 93, 46, 75, 33,
-        85, 46, 99, 75, 33, 85, 75, 33, 85,
-      ],
-      ram_usage_7d: [42, 75, 85, 46, 99, 89, 95],
-      ram_usage_30d: [
-        42, 88, 85, 78, 99, 89, 75, 33, 85, 76, 99, 46, 75, 33, 85, 46, 99, 93,
-        56, 75, 33, 85, 46, 99, 56, 75, 33, 85, 46, 0,
-      ],
+      ram_usage_24h: this.getRandomKonnektorValueArray(24, 10, 100),
+      ram_usage_7d: this.getRandomKonnektorValueArray(7, 10, 100),
+      ram_usage_30d: this.getRandomKonnektorValueArray(30, 10, 100),
+      cpu_usage_24h: this.getRandomKonnektorValueArray(24, 1, 100),
+      cpu_usage_7d: this.getRandomKonnektorValueArray(7, 1, 100),
+      cpu_usage_30d: this.getRandomKonnektorValueArray(30, 1, 100),
     },
   ];
 
   getKonnektors() {
     return this.konnektors;
   }
-  constructor() {}
+
+  getRandomKonnektorValueArray(length: number, max: number, min: number) {
+    const randomArray = [];
+    for (let i = 0; i < length; i++) {
+      const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+      randomArray.push(randomNumber);
+    }
+    return randomArray;
+  }
+
+  getRandomIntValue(max: number, min: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  getRandomFloatValue(max: number, min: number, decimalPlaces: number) {
+    const randomFloat = Math.random() * (max - min) + min;
+    return parseFloat(randomFloat.toFixed(decimalPlaces));
+  }
 }

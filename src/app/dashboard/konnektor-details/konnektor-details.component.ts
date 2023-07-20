@@ -21,30 +21,38 @@ export class KonnektorDetailsComponent implements AfterViewInit {
   @ViewChildren('dynamicRamCanvas', { read: ElementRef })
   canvasRAM!: QueryList<ElementRef>;
 
-  @ViewChild('chartCPU') canvas24: ElementRef | undefined;
+  @ViewChildren('dynamicCpuCanvas', { read: ElementRef })
+  canvasCPU!: QueryList<ElementRef>;
+
   @Input() konnektor: any;
 
   konnektors: any[] = [];
-  ctx: any;
+  ctxRAM: any;
+  ctxCPU: any;
+  status: any;
 
   constructor(
     private konnektorService: KonnektorService,
     private dataService: DataService
   ) {
     this.canvasRAM = new QueryList<ElementRef>();
+    this.canvasCPU = new QueryList<ElementRef>();
+    this.status = true;
   }
 
   ngAfterViewInit(): void {
-    console.log('canvasRAM QueryList', this.canvasRAM);
     this.canvasRAM.forEach((elementRef: ElementRef) => {
-      this.ctx = elementRef.nativeElement.getContext('2d');
-      console.log('ctx', this.ctx);
+      this.ctxRAM = elementRef.nativeElement.getContext('2d');
+    });
+    this.canvasCPU.forEach((elementRef: ElementRef) => {
+      this.ctxCPU = elementRef.nativeElement.getContext('2d');
     });
 
-    console.log('Konnektor', this.konnektor);
+    this.status = this.konnektor.is_active;
 
-    let gradientRAM = this.ctx.createLinearGradient(0, 0, 135, 135); // x,y,w,h
-    let gradientCPU = this.ctx.createLinearGradient(0, 0, 135, 135); // x,y,w,h
+    let gradientRAM = this.ctxRAM.createLinearGradient(0, 0, 135, 135); // x,y,w,h
+    let gradientCPU = this.ctxCPU.createLinearGradient(0, 0, 135, 135); // x,y,w,h
+
     gradientRAM?.addColorStop(0, 'rgba(0, 255, 0, 1)');
     gradientRAM?.addColorStop(0.6, 'rgba(255, 255, 0, 1)');
     gradientRAM?.addColorStop(1, 'rgba(255, 0, 0, 1)');
@@ -54,12 +62,16 @@ export class KonnektorDetailsComponent implements AfterViewInit {
 
     this.konnektorService.drawRamChart(gradientRAM, this.konnektor);
     this.konnektorService.drawRam24Chart(this.konnektor);
-    this.konnektorService.drawRam7Chart();
-    this.konnektorService.drawRam30Chart();
+    this.konnektorService.drawRam7Chart(this.konnektor);
+    this.konnektorService.drawRam30Chart(this.konnektor);
 
-    this.konnektorService.drawCpuChart(96, gradientCPU);
-    this.konnektorService.drawCpu24Chart();
-    this.konnektorService.drawCpu7Chart();
-    this.konnektorService.drawCpu30Chart();
+    this.konnektorService.drawCpuChart(gradientCPU, this.konnektor);
+    this.konnektorService.drawCpu24Chart(this.konnektor);
+    this.konnektorService.drawCpu7Chart(this.konnektor);
+    this.konnektorService.drawCpu30Chart(this.konnektor);
+  }
+
+  onChangeStatus() {
+    this.konnektor.is_active = !this.konnektor.is_active;
   }
 }
