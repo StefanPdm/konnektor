@@ -8,11 +8,11 @@
         *ngIf="!konnektor.is_active">offline</span>
       <ion-icon name="play-circle-outline"
         [ngStyle]="{'color': konnektor.is_active ? 'var(--gray)' : 'var(--green)'}"
-        [ngClass]="{'cursor-pointer': (!konnektor.is_active) }"
+        [ngClass]="{'cursor-pointer': (!konnektor.is_active), 'scale-on-hover': (!konnektor.is_active)}"
         (click)="onChangeStatus('start')"></ion-icon>
       <ion-icon name="stop-circle-outline"
         [ngStyle]="{'color': konnektor.is_active ? 'var(--secunet-red)' : 'var(--gray)'}"
-        [ngClass]="{'cursor-pointer': (konnektor.is_active)}"
+        [ngClass]="{'cursor-pointer': (konnektor.is_active), 'scale-on-hover': (konnektor.is_active)}"
         (click)="onChangeStatus('stop')"></ion-icon>
     </div>
   </div>

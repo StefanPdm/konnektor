@@ -11,6 +11,7 @@
   --secunet-red: #d70f37;
   --black: #000000;
   --gray: #848484;
+  --light-gray: #e9e9e9;
   --secunet-lightgray: #eeeeee;
   --secunet-darkgray: #1d1e22;
   --white: #ffffff;
@@ -112,7 +113,7 @@ svg text {
 /* ********** Media queries ****************/
 /* ************************************** */
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   .dashboard-content {
     grid-template-columns: 1fr !important;
     grid-auto-rows: auto;
@@ -137,6 +138,10 @@ svg text {
 @media (max-width: 991px) {
   .topbar {
     width: calc(100% - 0px) !important;
+
+    .search {
+      display: none;
+    }
   }
   .navigation {
     left: -200px;
@@ -169,13 +174,10 @@ svg text {
   }
 }
 
-@media (max-width: 768px) {
-  /* .graph-box .box {
-    height: 250px;
-  } */
-
+@media (max-width: 810px) {
   .card-box {
     grid-template-columns: repeat(2, 1fr) !important;
+    grid-gap: 12px !important;
   }
   .details {
     grid-template-columns: 1fr;
@@ -219,6 +221,10 @@ svg text {
 }
 
 @media (max-width: 550px) {
+  #dashboard-container {
+    padding: 90px 10px 10px 10px !important;
+  }
+
   .graph-box {
     grid-template-columns: 1fr;
   }
@@ -255,12 +261,20 @@ svg text {
   }
 
   .navigation.nav-size {
-    width: 100vw;
+    width: 100vw !important;
     z-index: 2;
   }
 
   .nav-toggle.nav-toggle-turn {
     z-index: 3;
+  }
+
+  .topbar.toggle-size {
+    z-index: 4 !important;
+
+    &::before {
+      display: none;
+    }
   }
 
   .main.main-large {
