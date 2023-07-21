@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KonnektorDetailsComponent } from './dashboard/konnektor-details/konnektor-details.component';
 import { RecentLoginsComponent } from './dashboard/recent-logins/recent-logins.component';
-import { UserComponent } from './user/userer.component';
+import { UserComponent } from './user/user.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HelpMeComponent } from './help-me/help-me.component';
 import { SettingsComponent } from './settings/settings.component';

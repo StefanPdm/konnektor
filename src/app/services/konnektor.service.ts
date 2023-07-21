@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, registerables, Plugin } from 'chart.js';
 
 Chart.register(...registerables);
 
@@ -7,10 +7,12 @@ Chart.register(...registerables);
   providedIn: 'root',
 })
 export class KonnektorService {
-  constructor() {}
   navListeners: any;
   main: any;
+  chart: any;
   chartRAM: any;
+  chartRAM_1: any;
+  chartRAM_2: any;
   chart24: any;
   chart7: any;
   chart30: any;
@@ -47,12 +49,13 @@ export class KonnektorService {
   }
 
   drawRamChart(gradient: any, konnektor: any) {
-    // if (this.chartRAM) {
-    //   this.chartRAM.destroy();
+    // if (this.chart) {
+    //   this.chart.destroy();
     // }
-    let canvas = 'chartRAM_' + konnektor.id;
 
-    this.chartRAM = new Chart(canvas, {
+    let canvas = 'chartRAM_' + konnektor.id;
+    this.chart = this.chartRAM + '_' + konnektor.id;
+    this.chart = new Chart(canvas, {
       type: 'doughnut',
       data: {
         datasets: [
@@ -71,8 +74,7 @@ export class KonnektorService {
       },
       options: {
         responsive: true,
-        // maintainAspectRatio: false,
-        // aspectRatio: 1.2,
+
         cutout: '80%',
 
         plugins: {
@@ -86,7 +88,6 @@ export class KonnektorService {
       },
       plugins: [this.gaugeChartText],
     });
-    this.chartRAM.update();
   }
 
   gaugeChartText = {
@@ -211,12 +212,13 @@ export class KonnektorService {
     // if (this.chart7) {
     //   this.chart7.destroy();
     // }
+
     let canvas = 'chart7_' + konnektor.id;
 
     this.chart7 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: konnektor.lables_7d,
+        labels: konnektor.labels_7d,
         datasets: [
           {
             data: konnektor.ram_usage_7d,
@@ -411,7 +413,7 @@ export class KonnektorService {
     this.chartCpu7 = new Chart(canvas, {
       type: 'line',
       data: {
-        labels: konnektor.lables_7d,
+        labels: konnektor.labels_7d,
         datasets: [
           {
             data: konnektor.cpu_usage_7d,

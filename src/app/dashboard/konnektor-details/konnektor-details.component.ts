@@ -9,6 +9,7 @@ import {
   Input,
   ViewChildren,
 } from '@angular/core';
+import { Konnektor } from 'src/app/models/konnektor.class';
 import { DataService } from 'src/app/services/data.service';
 import { KonnektorService } from 'src/app/services/konnektor.service';
 
@@ -24,7 +25,7 @@ export class KonnektorDetailsComponent implements AfterViewInit {
   @ViewChildren('dynamicCpuCanvas', { read: ElementRef })
   canvasCPU!: QueryList<ElementRef>;
 
-  @Input() konnektor: any;
+  @Input() konnektor!: Konnektor;
 
   konnektors: any[] = [];
   ctxRAM: any;
@@ -48,10 +49,12 @@ export class KonnektorDetailsComponent implements AfterViewInit {
       this.ctxCPU = elementRef.nativeElement.getContext('2d');
     });
 
-    this.status = this.konnektor.is_active;
+    this.drawDiagramms(this.ctxRAM, this.ctxCPU);
+  }
 
-    let gradientRAM = this.ctxRAM.createLinearGradient(0, 0, 135, 135); // x,y,w,h
-    let gradientCPU = this.ctxCPU.createLinearGradient(0, 0, 135, 135); // x,y,w,h
+  drawDiagramms(ctxRAM: any, ctxCPU: any) {
+    let gradientRAM = ctxRAM.createLinearGradient(0, 0, 135, 135); // x,y,w,h
+    let gradientCPU = ctxCPU.createLinearGradient(0, 0, 135, 135); // x,y,w,h
 
     gradientRAM?.addColorStop(0, 'rgba(0, 255, 0, 1)');
     gradientRAM?.addColorStop(0.6, 'rgba(255, 255, 0, 1)');
@@ -60,18 +63,36 @@ export class KonnektorDetailsComponent implements AfterViewInit {
     gradientCPU?.addColorStop(0.6, 'rgba(255, 255, 0, 1)');
     gradientCPU?.addColorStop(1, 'rgba(255, 0, 0, 1)');
 
-    this.konnektorService.drawRamChart(gradientRAM, this.konnektor);
     this.konnektorService.drawRam24Chart(this.konnektor);
     this.konnektorService.drawRam7Chart(this.konnektor);
     this.konnektorService.drawRam30Chart(this.konnektor);
 
-    this.konnektorService.drawCpuChart(gradientCPU, this.konnektor);
     this.konnektorService.drawCpu24Chart(this.konnektor);
     this.konnektorService.drawCpu7Chart(this.konnektor);
     this.konnektorService.drawCpu30Chart(this.konnektor);
+
+    this.drawDoughnutDiagramms(gradientCPU, gradientRAM);
   }
 
-  onChangeStatus() {
-    this.konnektor.is_active = !this.konnektor.is_active;
+  drawDoughnutDiagramms(gradientRAM: any, gradientCPU: any) {
+    this.konnektorService.drawRamChart(gradientRAM, this.konnektor);
+    this.konnektorService.drawCpuChart(gradientCPU, this.konnektor);
+  }
+
+  onChangeStatus(button: String) {
+    if (button === 'start') {
+      if (this.konnektor.is_active) {
+        return;
+      } else {
+        this.konnektor.is_active = !this.konnektor.is_active;
+      }
+    }
+    if (button === 'stop') {
+      if (!this.konnektor.is_active) {
+        return;
+      } else {
+        this.konnektor.is_active = !this.konnektor.is_active;
+      }
+    }
   }
 }

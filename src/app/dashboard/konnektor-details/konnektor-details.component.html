@@ -9,10 +9,11 @@
       <ion-icon name="play-circle-outline"
         [ngStyle]="{'color': konnektor.is_active ? 'var(--gray)' : 'var(--green)'}"
         [ngClass]="{'cursor-pointer': (!konnektor.is_active) }"
-        (click)="onChangeStatus()"></ion-icon>
+        (click)="onChangeStatus('start')"></ion-icon>
       <ion-icon name="stop-circle-outline"
         [ngStyle]="{'color': konnektor.is_active ? 'var(--secunet-red)' : 'var(--gray)'}"
-        [ngClass]="{'cursor-pointer': (konnektor.is_active)}" (click)="onChangeStatus()"></ion-icon>
+        [ngClass]="{'cursor-pointer': (konnektor.is_active)}"
+        (click)="onChangeStatus('stop')"></ion-icon>
     </div>
   </div>
   <!-- First row -->
