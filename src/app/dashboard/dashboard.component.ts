@@ -15,6 +15,5 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.konnektors = this.dataService.getKonnektors();
-    console.log('konnektors', this.konnektors);
   }
 }

@@ -8,14 +8,14 @@
 }
 
 :root {
-  --secunet-red: #d70f37;
+  --secunet-red: rgb(215, 15, 55);
   --black: #000000;
   --gray: #848484;
-  --light-gray: #e9e9e9;
+  --lightgray: #f8f8f8;
   --secunet-lightgray: #eeeeee;
   --secunet-darkgray: #1d1e22;
   --white: #ffffff;
-  --green: rgb(21, 221, 61);
+  --green: rgb(0, 182, 36);
   --orange: orange;
   --blue: rgb(21, 66, 172);
   --yellow: #bfbf3d;
@@ -138,11 +138,18 @@ svg text {
 @media (max-width: 991px) {
   .topbar {
     width: calc(100% - 0px) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15) !important;
 
     .search {
       display: none;
     }
+
+    &::before {
+      display: none;
+    }
   }
+
   .navigation {
     left: -200px;
   }

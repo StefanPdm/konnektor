@@ -14,6 +14,9 @@ export class Konnektor {
   public cpu_usage_24h: Array<number>;
   public cpu_usage_7d: Array<number>;
   public cpu_usage_30d: Array<number>;
+  public horizontal_line_24h: Array<number>;
+  public horizontal_line_7d: Array<number>;
+  public horizontal_line_30d: Array<number>;
 
   constructor(
     public id: number,
@@ -42,7 +45,10 @@ export class Konnektor {
     this.cpu_usage_24h = this.getRandomKonnektorValueArray(24, 1, 100);
     this.cpu_usage_7d = this.getRandomKonnektorValueArray(7, 1, 100);
     this.cpu_usage_30d = this.getRandomKonnektorValueArray(30, 1, 100);
-    console.log(this.ram_usage_7d);
+
+    this.horizontal_line_24h = Array(24).fill(80);
+    this.horizontal_line_7d = Array(7).fill(80);
+    this.horizontal_line_30d = Array(30).fill(80);
   }
 
   getRandomKonnektorValueArray(length: number, max: number, min: number) {

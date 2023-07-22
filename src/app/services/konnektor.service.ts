@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Chart, registerables, Plugin } from 'chart.js';
+import { Konnektor } from '../models/konnektor.class';
 
 Chart.register(...registerables);
 
@@ -8,6 +9,7 @@ Chart.register(...registerables);
 })
 export class KonnektorService {
   navListeners: any;
+  navigation: any;
   main: any;
   chart: any;
   chartRAM: any;
@@ -20,14 +22,64 @@ export class KonnektorService {
   chartCpu24: any;
   chartCpu7: any;
   chartCpu30: any;
+  horizontal_80_percentage: any;
+  borderColor = 'rgba(0, 182, 36, 1)';
+  backgroundColor = 'rgba(21,221, 61, 0.1)';
+
+  lineChartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        suggestedMax: 100,
+        suggestedMin: 0,
+        ticks: {
+          callback: function (value: any) {
+            return value + ' %'; // Add your desired unit here
+          },
+          font: {
+            size: 10,
+            family: 'Montserrat',
+          },
+        },
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+          font: {
+            size: 10,
+          },
+        },
+      },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: function (context: any) {
+            const value = context.parsed.y;
+            return value + ' %'; // Add your desired unit here
+          },
+        },
+      },
+    },
+  };
 
   // Navigation Services
   setNavigationListener() {
     this.main = document.querySelector('.main');
+    this.navigation = document.querySelector('.navigation');
     this.navListeners = document.querySelectorAll('.navigation li');
     this.navListeners.forEach((item: any) => {
       item.addEventListener('click', () => {
         this.setActiveNavLink(item);
+        this.navigation.classList.toggle('nav-size');
+        console.log('window.innerWidth', window.innerWidth);
+        console.log('window.screen.width', window.screen.width);
+        if (window.innerWidth < 551 || window.screen.width < 551) {
+          this.main.classList.toggle('main-large');
+        }
       });
     });
   }
@@ -86,11 +138,11 @@ export class KonnektorService {
           },
         },
       },
-      plugins: [this.gaugeChartText],
+      plugins: [this.chartTextDoughnut],
     });
   }
 
-  gaugeChartText = {
+  chartTextDoughnut = {
     id: 'gaugeChartText',
     afterDatasetsDraw(chart: any) {
       const {
@@ -155,6 +207,57 @@ export class KonnektorService {
     },
   };
 
+  chartTextLine = {
+    id: 'chartTextLine',
+    afterDatasetsDraw(chart: any) {
+      const {
+        ctx,
+        data,
+        chartArea: { top, bottom, left, right, width, height },
+        scales: { r },
+      } = chart;
+      ctx.save();
+      const xCoor = chart.getDatasetMeta(0).data[0].x;
+      const yCoor = chart.getDatasetMeta(0).data[0].y;
+
+      const score = data.datasets[0].data[0];
+      let rating;
+      score < 80 ? (rating = 'good') : (rating = 'danger');
+
+      this.drawtext(
+        'critical',
+        left,
+        top + 13,
+        '10',
+        '400',
+        '#fff',
+        'center',
+        ctx,
+        chart
+      );
+    },
+    drawtext(
+      text: any,
+      x: any,
+      y: any,
+      fontSize: any,
+      fontWeight: any,
+      fontColor: any,
+      textAlign: any,
+      ctx: any,
+      chart: any
+    ) {
+      ctx.save();
+      ctx.fillStyle = 'rgba(215,15,55,0.4)';
+      ctx.fillRect(40, 8, chart.chartArea.width, 20);
+      ctx.restore();
+      ctx.font = `${fontWeight} ${fontSize}px  'Montserrat', sans-serif`;
+      ctx.fillStyle = fontColor;
+      ctx.textAlign = textAlign;
+      ctx.fillText(text, chart.chartArea.width / 2, y);
+    },
+  };
+
   drawRam24Chart(konnektor: any) {
     // if (this.chart24) {
     //   this.chart24.destroy();
@@ -166,44 +269,18 @@ export class KonnektorService {
         labels: konnektor.labels_24h,
         datasets: [
           {
-            data: konnektor.ram_usage_24h,
+            data: konnektor.cpu_usage_24h,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chart24.update();
   }
@@ -223,42 +300,16 @@ export class KonnektorService {
           {
             data: konnektor.ram_usage_7d,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chart7.update();
   }
@@ -276,42 +327,16 @@ export class KonnektorService {
           {
             data: konnektor.ram_usage_30d,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chart30.update();
   }
@@ -350,7 +375,7 @@ export class KonnektorService {
           },
         },
       },
-      plugins: [this.gaugeChartText],
+      plugins: [this.chartTextDoughnut],
     });
     this.chartCPU.update();
   }
@@ -368,42 +393,16 @@ export class KonnektorService {
           {
             data: konnektor.cpu_usage_24h,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chartCpu24.update();
   }
@@ -418,42 +417,16 @@ export class KonnektorService {
           {
             data: konnektor.cpu_usage_7d,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chartCpu7.update();
   }
@@ -468,42 +441,16 @@ export class KonnektorService {
           {
             data: konnektor.cpu_usage_30d,
             label: '',
-            borderColor: '#d70f37',
-            backgroundColor: 'rgba(215,15, 55, 0.1)',
+            borderColor: this.borderColor,
+            backgroundColor: this.backgroundColor,
             fill: true,
             borderWidth: 0.6,
             tension: 0.4,
           },
         ],
       },
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              font: {
-                size: 10,
-
-                family: 'Montserrat',
-              },
-            },
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
+      options: this.lineChartOptions,
+      plugins: [this.chartTextLine],
     });
     this.chartCpu30.update();
   }

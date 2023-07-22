@@ -35,8 +35,6 @@ export class TopbarComponent implements OnInit {
       this.konnektorService.setMain();
       this.navToggle?.classList.toggle('nav-toggle-turn');
       this.top_bar.classList.toggle('toggle-size');
-      console.log(window.innerWidth);
-      console.log(screen.width);
       screen.width > 991 ? this.logo_large.classList.toggle('opacity-1') : 0;
     });
   }
