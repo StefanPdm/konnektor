@@ -36,15 +36,21 @@ export class Konnektor {
     this.update_available = update_available;
     this.pending_transactions = this.getRandomIntValue(0, 100);
     this.alltime_uploads = this.getRandomFloatValue(10, 100, 2);
-    this.labels_24h = Array(24).fill('');
-    this.labels_7d = Array(7).fill('');
-    this.labels_30d = Array(30).fill('');
-    this.ram_usage_24h = this.getRandomKonnektorValueArray(24, 10, 100);
-    this.ram_usage_7d = this.getRandomKonnektorValueArray(7, 10, 100);
-    this.ram_usage_30d = this.getRandomKonnektorValueArray(30, 10, 100);
-    this.cpu_usage_24h = this.getRandomKonnektorValueArray(24, 1, 100);
-    this.cpu_usage_7d = this.getRandomKonnektorValueArray(7, 1, 100);
-    this.cpu_usage_30d = this.getRandomKonnektorValueArray(30, 1, 100);
+    this.labels_24h = this.getRandomHours(24);
+    this.labels_7d = this.getRandomDays(7);
+    this.labels_30d = this.getRandomDays(30);
+    this.ram_usage_24h = this.getRandomKonnektorValueArray(23, 10, 100);
+    this.ram_usage_24h.push(this.ram_usage_percent);
+    this.ram_usage_7d = this.getRandomKonnektorValueArray(6, 10, 100);
+    this.ram_usage_7d.push(this.ram_usage_percent);
+    this.ram_usage_30d = this.getRandomKonnektorValueArray(29, 10, 100);
+    this.ram_usage_30d.push(this.ram_usage_percent);
+    this.cpu_usage_24h = this.getRandomKonnektorValueArray(23, 1, 100);
+    this.cpu_usage_24h.push(this.cpu_usage_percent);
+    this.cpu_usage_7d = this.getRandomKonnektorValueArray(6, 1, 100);
+    this.cpu_usage_7d.push(this.cpu_usage_percent);
+    this.cpu_usage_30d = this.getRandomKonnektorValueArray(29, 1, 100);
+    this.cpu_usage_30d.push(this.cpu_usage_percent);
 
     this.horizontal_line_24h = Array(24).fill(80);
     this.horizontal_line_7d = Array(7).fill(80);
@@ -67,5 +73,28 @@ export class Konnektor {
   getRandomFloatValue(max: number, min: number, decimalPlaces: number) {
     const randomFloat = Math.random() * (max - min) + min;
     return parseFloat(randomFloat.toFixed(decimalPlaces));
+  }
+
+  getRandomHours(hours: number) {
+    const randomHours = [];
+    let now = Date.now();
+    for (let i = 0; i < hours; i++) {
+      const timestamp = now - i * 60 * 60 * 1000;
+      const hour = new Date(timestamp).getHours().toString().padStart(2, '0');
+      randomHours.push(hour + ':00 Uhr');
+    }
+    return randomHours.reverse();
+  }
+
+  getRandomDays(days: number) {
+    const randomDays = [];
+    let now = new Date();
+    now.setUTCHours(0, 0, 0, 0);
+    for (let i = 0; i < days; i++) {
+      const date = new Date(now);
+      date.setUTCDate(date.getUTCDate() - i);
+      randomDays.push(date.toDateString());
+    }
+    return randomDays.reverse();
   }
 }

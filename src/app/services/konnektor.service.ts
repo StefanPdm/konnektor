@@ -28,13 +28,19 @@ export class KonnektorService {
 
   lineChartOptions = {
     scales: {
+      x: {
+        ticks: {
+          display: false, //this will remove only the label
+        },
+      },
+
       y: {
         beginAtZero: true,
         suggestedMax: 100,
         suggestedMin: 0,
         ticks: {
           callback: function (value: any) {
-            return value + ' %'; // Add your desired unit here
+            return value + '%'; // Add your desired unit here
           },
           font: {
             size: 10,
@@ -225,8 +231,8 @@ export class KonnektorService {
       score < 80 ? (rating = 'good') : (rating = 'danger');
 
       this.drawtext(
-        'critical',
-        left,
+        'Critical area',
+        width / 2 + 40,
         top + 13,
         '10',
         '400',
@@ -247,14 +253,14 @@ export class KonnektorService {
       ctx: any,
       chart: any
     ) {
-      ctx.save();
+      // ctx.save();
       ctx.fillStyle = 'rgba(215,15,55,0.4)';
-      ctx.fillRect(40, 8, chart.chartArea.width, 20);
-      ctx.restore();
+      ctx.fillRect(37, 8, chart.chartArea.width, 20);
+      // ctx.restore();
       ctx.font = `${fontWeight} ${fontSize}px  'Montserrat', sans-serif`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = textAlign;
-      ctx.fillText(text, chart.chartArea.width / 2, y);
+      ctx.fillText(text, x, y, chart.chartArea.width);
     },
   };
 
@@ -269,7 +275,7 @@ export class KonnektorService {
         labels: konnektor.labels_24h,
         datasets: [
           {
-            data: konnektor.cpu_usage_24h,
+            data: konnektor.ram_usage_24h,
             label: '',
             borderColor: this.borderColor,
             backgroundColor: this.backgroundColor,
