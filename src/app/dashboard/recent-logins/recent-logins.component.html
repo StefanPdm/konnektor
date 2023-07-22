@@ -3,156 +3,20 @@
     <h2>Recent Logins</h2>
   </div>
   <div class="table">
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/wolfgang.jpg" alt="wolfgang">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">Wolfgang</div>
-          <span class="job-title">Admin eHealth</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>11:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/axel.jpg" alt="axel">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">Axel</div>
-          <span class="job-title">CEO</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>00:43:12</div>
-    </div>
 
-    <div class="tr">
+    <div class="tr" *ngFor="let user of users">
       <div class="td">
         <div class="img-box">
-          <img src="assets/img/jan.jpg" alt="jan">
+          <img [src]="user.image_path" alt="user.name">
         </div>
         <div class="name-wrapper">
-          <span class="name">Jan</span>
-          <span class="job-title">Head of PM</span>
+          <div class="name">{{user.name}}</div>
+          <span class="job-title">{{user.title}}</span>
         </div>
       </div>
-      <div class="td"><span>2023-07-28</span><br>10:43:12</div>
-    </div>
-
-    <div class="tr">
       <div class="td">
-        <div class="img-box">
-          <img src="assets/img/markus.jpg" alt="markus">
-        </div>
-        <div class="name-wrapper">
-          <span class="name">Markus</span>
-          <span class="job-title">Solution Engineering</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>09:43:12</div>
+        <span><strong>{{user.last_login_date}}</strong></span><br>{{user.last_login_time}}</div>
     </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/david.jpg" alt="david">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">David</div>
-          <span class="job-title">CTO</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>08:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/stefan.jpg" alt="stefan">
-        </div>
-        <div class="name-wrapper">
-          <span class="name">Stefan</span>
-          <span class="job-title">Junior Front-End Developer</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>07:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/wolfgang.jpg" alt="wolfgang">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">Wolfgang</div>
-          <span class="job-title">Admin eHealth</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>11:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/axel.jpg" alt="axel">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">Axel</div>
-          <span class="job-title">CEO</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>00:43:12</div>
-    </div>
-
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/jan.jpg" alt="jan">
-        </div>
-        <div class="name-wrapper">
-          <span class="name">Jan</span>
-          <span class="job-title">Head of PM</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>10:43:12</div>
-    </div>
-
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/markus.jpg" alt="markus">
-        </div>
-        <div class="name-wrapper">
-          <span class="name">Markus</span>
-          <span class="job-title">Solution Engineering</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>09:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/david.jpg" alt="david">
-        </div>
-        <div class="name-wrapper">
-          <div class="name">David</div>
-          <span class="job-title">CTO</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>08:43:12</div>
-    </div>
-    <div class="tr">
-      <div class="td">
-        <div class="img-box">
-          <img src="assets/img/stefan.jpg" alt="stefan">
-        </div>
-        <div class="name-wrapper">
-          <span class="name">Stefan</span>
-          <span class="job-title">Junior Front-End Developer</span>
-        </div>
-      </div>
-      <div class="td"><span>2023-07-28</span><br>07:43:12</div>
-    </div>
-
-
 
   </div>
 </div>

@@ -27,7 +27,7 @@ export class KonnektorDetailsComponent implements AfterViewInit {
 
   @Input() konnektor!: Konnektor;
 
-  konnektors: any[] = [];
+  konnektors: Konnektor[] = [];
   ctxRAM: any;
   ctxCPU: any;
   status: any;

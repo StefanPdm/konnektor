@@ -132,6 +132,18 @@ svg text {
         max-width: unset !important;
       }
     }
+
+    .td {
+      width: fit-content;
+
+      .name-wrapper {
+        width: 100%;
+
+        .name {
+          width: 100px;
+        }
+      }
+    }
   }
 }
 
@@ -192,7 +204,7 @@ svg text {
 
   .recent-logins .table .tr .td {
     &:last-child {
-      width: unset !important;
+      // width: unset !important;
     }
   }
 }
@@ -247,8 +259,13 @@ svg text {
   .recent-logins .table .tr .td {
     font-size: 1em;
 
+    .name-wrapper {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
     .name {
       font-size: 1em !important;
+      padding: 0 !important;
     }
   }
 

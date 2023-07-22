@@ -1,5 +1,3 @@
-import { DataService } from '../services/data.service';
-
 export class Konnektor {
   public ram_usage_percent: number;
   public cpu_usage_percent: number;
