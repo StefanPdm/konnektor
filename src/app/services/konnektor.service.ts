@@ -255,7 +255,7 @@ export class KonnektorService {
     ) {
       // ctx.save();
       ctx.fillStyle = 'rgba(215,15,55,0.4)';
-      ctx.fillRect(37, 8, chart.chartArea.width, 20);
+      ctx.fillRect(37, 8, chart.chartArea.width, 25);
       // ctx.restore();
       ctx.font = `${fontWeight} ${fontSize}px  'Montserrat', sans-serif`;
       ctx.fillStyle = fontColor;

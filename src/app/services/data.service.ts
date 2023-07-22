@@ -39,7 +39,7 @@ export class DataService {
     {
       id: 4,
       name: 'Markus',
-      title: 'CEO',
+      title: 'Division eHealth',
       email: '<EMAIL>',
       password: '<PASSWORD>',
       role: 'admin',
@@ -47,12 +47,12 @@ export class DataService {
     },
     {
       id: 5,
-      name: 'David',
+      name: 'Kai',
       title: 'CTO',
       email: '<EMAIL>',
       password: '<PASSWORD>',
       role: 'admin',
-      image_path: 'assets/img/david.jpg',
+      image_path: 'assets/img/kai.webp',
     },
     {
       id: 6,
@@ -62,6 +62,15 @@ export class DataService {
       password: '<PASSWORD>',
       role: 'admin',
       image_path: 'assets/img/stefan.jpg',
+    },
+    {
+      id: 7,
+      name: 'Thomas',
+      title: 'CFO',
+      email: '<EMAIL>',
+      password: '<PASSWORD>',
+      role: 'admin',
+      image_path: 'assets/img/thomas.webp',
     },
   ];
 
@@ -76,9 +85,9 @@ export class DataService {
   }
 
   getUsers() {
-    let randomUserListLength = Math.floor(Math.random() * 6) + 9;
+    let randomUserListLength = Math.floor(Math.random() * 3) + 12;
     for (let i = 0; i < randomUserListLength; i++) {
-      let randomUser = Math.floor(Math.random() * 6);
+      let randomUser = Math.floor(Math.random() * 7);
       this.users.push(
         new User(
           this.registrated_users[randomUser].id,

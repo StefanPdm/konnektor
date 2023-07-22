@@ -113,7 +113,7 @@ svg text {
 /* ********** Media queries ****************/
 /* ************************************** */
 
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
   .dashboard-content {
     grid-template-columns: 1fr !important;
     grid-auto-rows: auto;
@@ -147,7 +147,7 @@ svg text {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1090px) {
   .topbar {
     width: calc(100% - 0px) !important;
     border-radius: 0 !important;
@@ -193,7 +193,7 @@ svg text {
   }
 }
 
-@media (max-width: 810px) {
+@media (max-width: 895px) {
   .card-box {
     grid-template-columns: repeat(2, 1fr) !important;
     grid-gap: 12px !important;
