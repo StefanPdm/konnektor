@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Konnektor } from '../models/konnektor.class';
 import { User } from '../models/user.class';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   public users: Array<User> = [];
+  public konnektors: Array<Konnektor> = [];
+  private showLoading = new Subject<boolean>();
+  loading$ = this.showLoading.asObservable();
+
+  constructor() {
+    this.showLoading.next(true);
+  }
 
   registrated_users: any = [
     {
@@ -74,13 +82,33 @@ export class DataService {
     },
   ];
 
-  private konnektors: Konnektor[] = [
-    // id, name, is_active, online_since, firmware_version, update_available
-    new Konnektor(1, 'AXP37G-4', true, '2020-01-01', 'v1.0.56', true),
-    new Konnektor(2, 'AXP37G-4', false, '2023-01-01', 'v2.0.1', false),
-  ];
+  //  private konnektors: Konnektor[] = [
+  //     // id, name, is_active, online_since, firmware_version, update_available
+  //     new Konnektor(1, 'AXP37G-4', true, '2020-03-09', 'v1.0.56', true),
+  //     new Konnektor(2, 'AXP37G-4', false, '2022-01-01', 'v2.0.1', false),
+  //   ];
+
+  async pullDataFromServer() {
+    this.showLoading.next(true);
+    const url = `https://stefanpdm.pythonanywhere.com/konnektors/`;
+    const response = await fetch(url);
+    const data = await response.json();
+    data.forEach((konnektor: any) => {
+      this.konnektors.push(
+        new Konnektor(
+          konnektor.k_id,
+          konnektor.k_name,
+          konnektor.k_is_active,
+          konnektor.k_online_since,
+          konnektor.k_firmware_version,
+          konnektor.k_update_available
+        )
+      );
+    });
+  }
 
   getKonnektors() {
+    this.showLoading.next(false);
     return this.konnektors.slice();
   }
 

@@ -233,7 +233,7 @@ export class KonnektorService {
       this.drawtext(
         'Critical area',
         width / 2 + 40,
-        top + 13,
+        top + 15,
         '10',
         '400',
         '#fff',
@@ -255,7 +255,7 @@ export class KonnektorService {
     ) {
       // ctx.save();
       ctx.fillStyle = 'rgba(215,15,55,0.4)';
-      ctx.fillRect(37, 8, chart.chartArea.width, 25);
+      ctx.fillRect(39, 8, chart.chartArea.width, 28);
       // ctx.restore();
       ctx.font = `${fontWeight} ${fontSize}px  'Montserrat', sans-serif`;
       ctx.fillStyle = fontColor;

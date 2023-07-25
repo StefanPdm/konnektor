@@ -1,4 +1,4 @@
-<div class="recent-logins">
+<div *ngIf="!showSpinner" class="recent-logins">
   <div class="card-header">
     <h2>Recent Logins</h2>
   </div>
@@ -15,7 +15,8 @@
         </div>
       </div>
       <div class="td">
-        <span><strong>{{user.last_login_date}}</strong></span><br>{{user.last_login_time}}</div>
+        <span><strong>{{user.last_login_date}}</strong></span><br>{{user.last_login_time}}
+      </div>
     </div>
 
   </div>

@@ -11,8 +11,13 @@ export class RecentLoginsComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   users: User[] = [];
+  showSpinner: boolean = true;
 
   ngOnInit(): void {
+    this.dataService.loading$.subscribe((value) => {
+      this.showSpinner = value;
+    });
+
     this.users = this.dataService.getUsers();
     this.users.sort((a, b) => {
       const dateA = new Date(a.last_login_date).getDate();
